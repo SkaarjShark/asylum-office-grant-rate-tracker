@@ -1,0 +1,36 @@
+.images {
+    width: 500px;
+    /* height: 300px; */
+    /* flex: 1; */
+}
+
+#title {
+    align-content: center;
+    background-color: #666555;
+    color: white;
+    margin-bottom: 110px;
+}
+
+#big-text {
+    align-content: center;
+    font-size: 3.75rem;
+    margin-bottom: 18px;
+}
+
+#small-text {
+    margin-bottom: 32px;
+}
+
+#pictures {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    margin: 100px;
+}
+
+#pictures-text {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5rem;
+}
