@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDownloadData } from '../../../hooks/useDownloadData.js';
 import {decodeBase64} from '../../../utils/decodeBase64.js';
 
+import { NavLink } from 'react-router-dom';
+
 import './styles.css'
 
 /**
@@ -40,15 +42,23 @@ export const LandingPage = () => {
         <h1 id="big-text">Asylum Office Grant Rate Tracker</h1>
         <h3 id="small-text">The Asylum Office Grant Rate Tracker provides asylum seekers, researchers, policymakers, and the public an interactive tool to explore USCIS data on Asylum Office decisions</h3>
       </div>
-      <div id="pictures">
-        <img className="images" src={barGraph} alt="barGraph image"/>
-        <img className="images" src={pieChart} alt="lineGraph image"/>
-        <img className="images" src={lineGraph} alt="pieChart image"/>
+      <div id="pictures-container">
+        <div>
+          <img className="images" src={barGraph} alt="barGraph image"/>
+          <h3 className="pictures-text">Search Grant Rates By Office</h3>
+        </div>
+       <div>
+        <img className="images" src={pieChart} alt="pieChart image"/>
+        <h3 className="pictures-text">Search Grant Rates By Nationality</h3>
+       </div>
+       <div>
+        <img className="images" src={lineGraph} alt="lineGraph image"/> 
+        <h3 className="pictures-text">Search Grant Rates Over Time</h3>
+       </div>
       </div>
-      <div id="pictures-text">
-        <h3>Search Grant Rates By Office</h3>
-        <h3>Search Grant Rates Over Time</h3>
-        <h3>Search Grant Rates By Nationality</h3>
+      <div id="buttons">
+        <NavLink className="butt" to="/graphs">View the Data</NavLink>
+        <button onClick={downloadCSV} className="butt">Download the Data</button>
       </div>
     </div>
   );
