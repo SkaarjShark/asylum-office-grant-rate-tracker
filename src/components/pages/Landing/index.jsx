@@ -8,13 +8,11 @@ import {decodeBase64} from '../../../utils/decodeBase64.js';
 
 import { NavLink } from 'react-router-dom'; // Navlink for quick access to the graphs page
 
-import './styles.css'
-
-/**
+/*
  * TODO: Ticket 1:
  * Implement structure and styles of the Landing page using Tailwind
  * Implement any button functionality implied by the landing page screenshot example (tickets/examples)
- */
+*/
 export const LandingPage = () => {
   const navigate = useNavigate();
   const { downloadCSV } = useDownloadData();
@@ -38,9 +36,9 @@ export const LandingPage = () => {
     <div className='flex-c w-[100vw] secondary-c'>
       {/* Landing Page
       <div>{'Type this into Canvas: ' + decodeBase64('VGltZTJDb2RlIQ==')}</div> */}
-      <div id="title">
-        <h1 id="big-text">Asylum Office Grant Rate Tracker</h1>
-        <h3 id="small-text">The Asylum Office Grant Rate Tracker provides asylum seekers, researchers, policymakers, and the public an interactive tool to explore USCIS data on Asylum Office decisions</h3>
+      <div className="bg-[#666555] pt-4 pb-8">
+        <h1 className="text-6xl mb-8 text-[#ffffff]">Asylum Office Grant Rate Tracker</h1>
+        <h3 className="text-[#ffffff]">The Asylum Office Grant Rate Tracker provides asylum seekers, researchers, policymakers, and the public an interactive tool to explore USCIS data on Asylum Office decisions</h3>
       </div>
       <div id="pictures-container">
         <div>
