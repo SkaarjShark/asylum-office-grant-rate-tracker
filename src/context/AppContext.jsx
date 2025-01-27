@@ -5,6 +5,8 @@ import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
 const AppContext = createContext({});
 
+const url = 'https://hrf-asylum-be-b.herokuapp.com/cases'
+
 /**
  * TODO: Ticket 2:
  * - Use axios to fetch the data
@@ -17,16 +19,26 @@ const useAppContextProvider = () => {
 
   useLocalStorage({ graphData, setGraphData });
 
-  const getFiscalData = () => {
-    // TODO: Replace this with functionality to retrieve the data from the fiscalSummary endpoint
-    const fiscalDataRes = testData;
-    return fiscalDataRes;
+  const getFiscalData = async () => {
+    try {
+      const res = await axios.get(`${url}/fiscalSummary`);
+      console.log('FiscalData... ', res);
+      return res.data;
+    } catch (err) {
+      console.error('Error fetching fiscal data:', err);
+      throw err;
+    }
   };
-
+  
   const getCitizenshipResults = async () => {
-    // TODO: Replace this with functionality to retrieve the data from the citizenshipSummary endpoint
-    const citizenshipRes = testData.citizenshipResults;
-    return citizenshipRes;
+    try {
+      const res = await axios.get(`${url}/citizenshipSummary`);
+      console.log('CitizenshipResults.... ', res);
+      return res.data;
+    } catch (err) {
+      console.error('Error fetching citizenship data:', err);
+      throw err;
+    }
   };
 
   const updateQuery = async () => {
@@ -35,6 +47,18 @@ const useAppContextProvider = () => {
 
   const fetchData = async () => {
     // TODO: fetch all the required data and set it to the graphData state
+    setIsDataLoading(true);
+    try {
+      const fiscalData = await getFiscalData();
+      const citizenshipData = await getCitizenshipResults();
+      console.log('this should happen after')
+      const fullData = { ...fiscalData, citizenshipResults: citizenshipData };
+      setGraphData(fullData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsDataLoading(false);
+    }
   };
 
   const clearQuery = () => {
